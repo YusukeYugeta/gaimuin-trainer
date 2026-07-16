@@ -73,7 +73,6 @@ export function SessionPage() {
     setPendingSession(null);
     setAnswered(null);
     startedAtRef.current = Date.now();
-    window.scrollTo(0, 0);
     document.querySelector("[data-session-body]")?.scrollTo(0, 0);
   };
 

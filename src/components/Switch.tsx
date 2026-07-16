@@ -1,4 +1,4 @@
-import styles from "../pages/SettingsPage.module.css";
+import styles from "./Switch.module.css";
 
 export function Switch({ checked, onChange, label }: { checked: boolean; onChange: (v: boolean) => void; label: string }) {
   return (

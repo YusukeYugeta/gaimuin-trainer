@@ -32,10 +32,8 @@ function errorWeight(progress?: QuestionProgress): number {
   return progress?.lastAnswerCorrect === false ? W.recentWrongError : 1.0;
 }
 
-// W_category は分野間の出題比率を将来調整するためのフック。現状は全分野均等(1.0)。
 export function questionWeight(progress: QuestionProgress | undefined, now: Date = new Date()): number {
-  const categoryWeight = 1.0;
-  return categoryWeight * masteryWeight(progress) * recencyWeight(progress, now) * errorWeight(progress);
+  return masteryWeight(progress) * recencyWeight(progress, now) * errorWeight(progress);
 }
 
 // 重み付き非復元抽出。rng は 0以上1未満の乱数を返す関数（テスト時に差し替え可能）。

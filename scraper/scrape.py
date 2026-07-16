@@ -17,7 +17,6 @@ import random
 import re
 import sys
 import time
-from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
@@ -98,23 +97,13 @@ def split_answer_mark(text: str) -> tuple[str, str]:
     return mark, rest
 
 
-@dataclass
-class RawQuestion:
-    sourceUrl: str
-    category: str
-    subcategory: str
-    question: str
-    answerText: str
-    explanation: str
-
-
-def parse_category_page(html: str, page_url: str, category_name: str) -> list[RawQuestion]:
+def parse_category_page(html: str, page_url: str, category_name: str) -> list[dict]:
     soup = BeautifulSoup(html, "html.parser")
     content = soup.select_one(".entry-content")
     if content is None:
         return []
 
-    entries: list[RawQuestion] = []
+    entries: list[dict] = []
     for li in content.select("ol > li"):
         # 先頭2つの<p>が「見出し」「問題文」。それ以外(空の<p>等)は無視する。
         top_level_ps = [c for c in li.children if isinstance(c, Tag) and c.name == "p"]
@@ -135,14 +124,14 @@ def parse_category_page(html: str, page_url: str, category_name: str) -> list[Ra
 
         anchor = f"#{question_id_attr}" if question_id_attr else ""
         entries.append(
-            RawQuestion(
-                sourceUrl=f"{page_url}{anchor}",
-                category=category_name,
-                subcategory=subcategory,
-                question=question_text,
-                answerText=answer_text,
-                explanation=explanation,
-            )
+            {
+                "sourceUrl": f"{page_url}{anchor}",
+                "category": category_name,
+                "subcategory": subcategory,
+                "question": question_text,
+                "answerText": answer_text,
+                "explanation": explanation,
+            }
         )
     return entries
 
@@ -154,7 +143,7 @@ def main() -> None:
     category_urls = discover_category_urls(index_html, CRAWL_START_URL)
     print(f"found {len(category_urls)} candidate category pages")
 
-    all_entries: list[RawQuestion] = []
+    all_entries: list[dict] = []
     skipped: list[str] = []
     for i, url in enumerate(category_urls, 1):
         print(f"[{i}/{len(category_urls)}] fetching {url}")
@@ -169,7 +158,7 @@ def main() -> None:
         all_entries.extend(entries)
 
     RAW_OUTPUT_PATH.write_text(
-        json.dumps([e.__dict__ for e in all_entries], ensure_ascii=False, indent=2), encoding="utf-8"
+        json.dumps(all_entries, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     print(f"wrote {len(all_entries)} raw entries to {RAW_OUTPUT_PATH}")
     if skipped:
