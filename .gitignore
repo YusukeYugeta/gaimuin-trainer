@@ -1,0 +1,19 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+.DS_Store
+
+# scraper local artifacts (never commit plaintext question data)
+scraper/output/
+scraper/.venv/
+scraper/__pycache__/
+__pycache__/
+*.pyc
+questions.raw.json
+.env
+.env.*
+
+# vite/vitest
+.vite/
+coverage/

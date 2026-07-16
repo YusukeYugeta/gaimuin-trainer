@@ -1,0 +1,108 @@
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f4f6f8;
+  --color-text: #1a1d21;
+  --color-text-muted: #5a6270;
+  --color-primary: #1a5fb4;
+  --color-primary-text: #ffffff;
+  --color-correct: #1e7d32;
+  --color-correct-bg: #e6f4ea;
+  --color-incorrect: #b3261e;
+  --color-incorrect-bg: #fdecea;
+  --color-border: #d9dee3;
+  --font-scale: 1;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #14161a;
+    --color-surface: #1e2126;
+    --color-text: #eceef0;
+    --color-text-muted: #a3abb5;
+    --color-primary: #6fa8f5;
+    --color-primary-text: #0b1220;
+    --color-correct: #7fd399;
+    --color-correct-bg: #123420;
+    --color-incorrect: #f2938c;
+    --color-incorrect-bg: #3a1715;
+    --color-border: #33383f;
+  }
+}
+
+/* 設定でOS追従以外を選んだ場合の明示的な上書き */
+:root[data-theme="dark"] {
+  --color-bg: #14161a;
+  --color-surface: #1e2126;
+  --color-text: #eceef0;
+  --color-text-muted: #a3abb5;
+  --color-primary: #6fa8f5;
+  --color-primary-text: #0b1220;
+  --color-correct: #7fd399;
+  --color-correct-bg: #123420;
+  --color-incorrect: #f2938c;
+  --color-incorrect-bg: #3a1715;
+  --color-border: #33383f;
+}
+
+:root[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-surface: #f4f6f8;
+  --color-text: #1a1d21;
+  --color-text-muted: #5a6270;
+  --color-primary: #1a5fb4;
+  --color-primary-text: #ffffff;
+  --color-correct: #1e7d32;
+  --color-correct-bg: #e6f4ea;
+  --color-incorrect: #b3261e;
+  --color-incorrect-bg: #fdecea;
+  --color-border: #d9dee3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: calc(16px * var(--font-scale));
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.app-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+}

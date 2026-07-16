@@ -1,0 +1,141 @@
+.page {
+  padding: 16px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.statCard {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 10px 6px;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.statLabel {
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+}
+
+.resumeBanner {
+  background: var(--color-correct-bg);
+  color: var(--color-correct);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.resumeBanner button {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: none;
+  background: var(--color-correct);
+  color: #fff;
+  font-weight: 700;
+}
+
+.primaryButton {
+  min-height: 56px;
+  border-radius: 14px;
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.countRow {
+  display: flex;
+  gap: 8px;
+}
+
+.countBtn {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.countBtnActive {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  font-weight: 700;
+}
+
+.linkRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.linkButton {
+  min-height: 48px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  text-align: left;
+  padding: 0 14px;
+  font-size: 1rem;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.categoryChip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font-size: 0.82rem;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.historyRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  padding: 8px 10px;
+  background: var(--color-surface);
+  border-radius: 8px;
+}
